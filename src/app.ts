@@ -1,30 +1,31 @@
 import express from "express";
-import cors from "cors";
+import { Request, Response } from "express";
+import { User } from "./entity/user.entity";
+import { myDataSource } from "./app-data-source";
+import { UserController } from "./controllers/UserController";
+
+// establish database connection
+myDataSource
+  .initialize()
+  .then(() => {
+    console.log("Data Source has been initialized!");
+  })
+  .catch((err) => {
+    console.error("Error during Data Source initialization:", err);
+  });
 
 const app = express();
-const PORT = 3000;
+app.use(express.json());
 
-app.use(cors());
+const userController = new UserController();
+app.get("/users", userController.getAllUsers);
+app.post("/create-users", userController.createUser);
+app.get("/user/:id", userController.userById);
+app.put("/update-user/:id", userController.updateUser);
+app.delete("/delete-user/:id", userController.deleteUser);
 
-interface User {
-  id: number;
-  name: string;
-  age: number;
-}
-
-const users: User[] = [
-  { id: 1, name: "Alice", age: 25 },
-  { id: 2, name: "Bob", age: 24 },
-  { id: 3, name: "Charlie", age: 27 },
-];
-app.get("/", (req, res) => {
-  res.send("BobCat");
-});
-
-app.get("/users", (req, res) => {
-  res.json(users);
-});
-
+// Setup your server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
