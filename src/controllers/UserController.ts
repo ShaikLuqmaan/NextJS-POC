@@ -1,4 +1,3 @@
-// controllers/UserController.ts
 import { Request, Response } from "express";
 import { myDataSource } from "../app-data-source";
 import { User } from "../entity/user.entity";
