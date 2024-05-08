@@ -5,6 +5,7 @@ import { User } from "./entity/user.entity";
 import { myDataSource } from "./app-data-source";
 import { UserController } from "./controllers/UserController";
 import { ProductController } from "./controllers/ProductController";
+import { AuthorController } from "./controllers/AuthorController";
 
 // establish database connection
 myDataSource
@@ -28,6 +29,18 @@ app.post("/create-users", userController.createUser);
 app.get("/user/:id", userController.userById);
 app.put("/update-user/:id", userController.updateUser);
 app.delete("/delete-user/:id", userController.deleteUser);
+
+// With relation ships
+app.post("/create-user-profiles", userController.createUserWithProfile);
+app.get("/user-profiles", userController.getUsersWithProfile);
+app.put("/update-user-profiles/:id", userController.updateUserWithProfile);
+app.delete("/delete-user-profile/:id", userController.deleteUserProfile);
+
+// OneToMany -- ManyToOne
+const authorController = new AuthorController();
+app.post("/create-authors", authorController.createAuthor);
+app.get("/get-authors", authorController.getAllAuthors);
+app.get("/get-book-by-author", authorController.getBooksByAuthor);
 
 // Product
 const productController = new ProductController();
