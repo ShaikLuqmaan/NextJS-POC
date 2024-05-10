@@ -1,12 +1,14 @@
 import express from "express";
 import multer from "multer";
 import { Request, Response } from "express";
+const cors = require("cors");
 import { User } from "./entity/user.entity";
 import { myDataSource } from "./app-data-source";
 import { UserController } from "./controllers/UserController";
 import { ProductController } from "./controllers/ProductController";
 import { AuthorController } from "./controllers/AuthorController";
 import { StudentController } from "./controllers/StudentController";
+import { MockController } from "./controllers/MockController";
 
 // establish database connection
 myDataSource
@@ -20,6 +22,7 @@ myDataSource
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 const storage = multer.memoryStorage();
 export const upload = multer({ storage: storage });
 
@@ -70,6 +73,27 @@ app.post(
   upload.single("image"),
   productController.createProductWithImage
 );
+
+//mock third party
+app.get("/mockdata", (req, res) => {
+  res.json({
+    success: true,
+    data: [
+      {
+        decimalValue: 123.45,
+        name: "Mock Data 1",
+      },
+      {
+        decimalValue: 235.45,
+        name: "Mock Data 2",
+      },
+    ],
+  });
+});
+
+const mockController = new MockController();
+app.post("/save-data", mockController.saveData);
+app.get("/get-data", mockController.getData);
 
 // server
 const PORT = process.env.PORT || 3000;
