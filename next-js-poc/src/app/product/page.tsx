@@ -2,7 +2,7 @@
 import React from "react";
 import Form from "../../../components/Form";
 
-const AddProductPage: React.FC = () => {
+const Product: React.FC = () => {
   return (
     <div>
       <h1>Add New Product</h1>
@@ -11,4 +11,4 @@ const AddProductPage: React.FC = () => {
   );
 };
 
-export default AddProductPage;
+export default Product;

@@ -6,6 +6,7 @@ import { myDataSource } from "./app-data-source";
 import { UserController } from "./controllers/UserController";
 import { ProductController } from "./controllers/ProductController";
 import { AuthorController } from "./controllers/AuthorController";
+import { StudentController } from "./controllers/StudentController";
 
 // establish database connection
 myDataSource
@@ -42,6 +43,22 @@ app.post("/create-authors", authorController.createAuthor);
 app.get("/get-authors", authorController.getAllAuthors);
 app.get("/get-book-by-author", authorController.getBooksByAuthor);
 
+// ManyToMany relationship
+const studentController = new StudentController();
+app.post("/create-student", studentController.createStudent);
+app.post("/enroll-courses", studentController.addCourseToStudent);
+app.post("create-course", studentController.enrolledCourse);
+app.get("/students", studentController.getStudents);
+app.get("/courses", studentController.getCourses);
+// Get courses by student ID
+app.get(
+  "/students/:studentId/courses",
+  studentController.getCoursesByStudentId
+);
+// Get students by course ID
+app.get("/courses/:courseId/students", studentController.getStudentsByCourseId);
+
+app.post("/add-enrollement-date", studentController.createEnrollment);
 // Product
 const productController = new ProductController();
 app.get("/products", productController.getProducts);
