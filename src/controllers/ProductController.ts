@@ -76,12 +76,21 @@ export class ProductController {
           .getMany();
       }
 
-      if (products) {
-        res.send(products);
+      // Convert bytea image data to Base64 so that it can be displayed in browser
+      const productsWithImages = products.map((product) => ({
+        ...product,
+        imageUrl: product.imageData
+          ? `data:image/jpeg;base64,${product.imageData.toString("base64")}`
+          : null,
+      }));
+
+      if (productsWithImages.length > 0) {
+        res.json(productsWithImages);
       } else {
         res.status(404).send("Active Product not found.");
       }
     } catch (error) {
+      console.error("Error in getting active products:", error);
       res.status(500).send("Error in getting active products.");
     }
   }

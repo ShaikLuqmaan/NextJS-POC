@@ -2,9 +2,14 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+interface Course {
+  id: number;
+  name: string;
+}
 interface Student {
   id: number;
   name: string;
+  courses: Course[];
 }
 
 const GetStudents: React.FC = () => {
@@ -26,14 +31,29 @@ const GetStudents: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Students</h1>
-      <ul>
+    <div className="app">
+      <h1 className="head_text mb-5">Students and Their Courses</h1>
+      <ul className="list-none p-0 m-0">
         {students.map((student) => (
-          <li key={student.id}>Name: {student.name}</li>
+          <li
+            key={student.id}
+            className="py-4 px-6 bg-white shadow-md rounded-lg my-2  "
+          >
+            Name:{" "}
+            <span className="text-gray-700 font-medium">{student.name}</span>
+            <ul className="list-none pl-4">
+              {student.courses.map((course) => (
+                <li key={course.id} className="text-gray-600">
+                  Course: {course.name}
+                </li>
+              ))}
+            </ul>
+          </li>
         ))}
       </ul>
-      <button onClick={() => router.push("/")}>&lt; Back</button>
+      <button onClick={() => router.push("/")} className="outline_btn mt-4">
+        Back
+      </button>
     </div>
   );
 };

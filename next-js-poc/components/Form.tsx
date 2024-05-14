@@ -69,49 +69,84 @@ const Form: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={product.name}
-        onChange={handleChange}
-        required
-      />
+    <form
+      onSubmit={handleSubmit}
+      className="glassmorphism flex flex-col gap-4 p-6 max-w-md mx-auto"
+    >
+      <div className="flex flex-col gap-2">
+        <label htmlFor="name" className="font-semibold">
+          Name:
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={product.name}
+          onChange={handleChange}
+          className="form_input"
+          required
+        />
+      </div>
 
-      <label htmlFor="description">Description:</label>
-      <textarea
-        id="description"
-        name="description"
-        value={product.description}
-        onChange={handleChange}
-        required
-      />
+      <div className="flex flex-col gap-2">
+        <label htmlFor="description" className="font-semibold">
+          Description:
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          value={product.description}
+          onChange={handleChange}
+          className="form_textarea"
+          required
+        />
+      </div>
 
-      <label htmlFor="price">Price:</label>
-      <input
-        type="number"
-        id="price"
-        name="price"
-        value={product.price}
-        onChange={handleChange}
-        required
-      />
+      <div className="flex flex-col gap-2">
+        <label htmlFor="price" className="font-semibold">
+          Price:
+        </label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          value={product.price}
+          onChange={handleChange}
+          className="form_input"
+          required
+        />
+      </div>
 
-      <label htmlFor="isActive">Active:</label>
-      <input
-        type="checkbox"
-        id="isActive"
-        name="isActive"
-        checked={product.isActive}
-        onChange={handleChange}
-      />
+      <div className="flex items-center gap-2">
+        <label htmlFor="isActive" className="font-semibold">
+          Active:
+        </label>
+        <input
+          type="checkbox"
+          id="isActive"
+          name="isActive"
+          checked={product.isActive}
+          onChange={handleChange}
+          className="rounded text-blue-500"
+        />
+      </div>
 
-      <label htmlFor="image">Image:</label>
-      <input type="file" id="image" name="image" onChange={handleFileChange} />
+      <div className="flex flex-col gap-2">
+        <label htmlFor="image" className="font-semibold">
+          Image:
+        </label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          onChange={handleFileChange}
+          className="form_input"
+        />
+      </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" className="black_btn mt-4">
+        Submit
+      </button>
     </form>
   );
 };

@@ -5,8 +5,8 @@ import "../../styles/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Share Prompt",
-  description: "Discover and share AI prompts",
+  title: "Zemoso",
+  description: "Discover and share",
 };
 
 export default function RootLayout({

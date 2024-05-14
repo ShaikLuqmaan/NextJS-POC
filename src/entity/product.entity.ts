@@ -47,16 +47,19 @@ export class Product {
 
   @Column({
     type: "jsonb",
+    nullable: true,
   })
   metadata?: object;
 
   @Column({
     type: "uuid",
+    nullable: true,
   })
   uuid?: string;
 
   @Column({
     type: "inet",
+    nullable: true,
   })
   ipAddress?: string;
 

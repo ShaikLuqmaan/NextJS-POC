@@ -3,8 +3,8 @@ import CreateStudent from "../../../components/StudentForm";
 
 const CreateStudentPage = () => {
   return (
-    <div>
-      <p>Add New Students</p>
+    <div className="app">
+      <h1 className="head_text blue_gradient mb-5">Add New Students</h1>
       <CreateStudent />
     </div>
   );
