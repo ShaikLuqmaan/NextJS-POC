@@ -60,11 +60,11 @@ const CreateUserWithProfile = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-3">Create a new User</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="mb-8">
-          <label className="block">
+    <div className="app container mx-auto px-6 py-4">
+      <h2 className="head_text">Create a new User</h2>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="mb-6">
+          <label className="block desc">
             First Name:
             <input
               type="text"
@@ -72,14 +72,14 @@ const CreateUserWithProfile = () => {
               placeholder="First Name"
               value={formData.firstName}
               onChange={handleChange}
-              className="p-2 border rounded w-full"
+              className="form_input"
               required
             />
           </label>
         </div>
 
-        <div className="mb-8">
-          <label className="block">
+        <div className="mb-6">
+          <label className="block desc">
             Last Name:
             <input
               type="text"
@@ -87,14 +87,14 @@ const CreateUserWithProfile = () => {
               placeholder="Last Name"
               value={formData.lastName}
               onChange={handleChange}
-              className="p-2 border rounded w-full"
+              className="form_input"
               required
             />
           </label>
         </div>
 
-        <div className="mb-8">
-          <label className="block">
+        <div className="mb-6">
+          <label className="block desc">
             Age:
             <input
               type="number"
@@ -102,30 +102,27 @@ const CreateUserWithProfile = () => {
               placeholder="Age"
               value={formData.age.toString()}
               onChange={handleChange}
-              className="p-2 border rounded w-full"
+              className="form_input"
               required
             />
           </label>
         </div>
 
-        <div className="mb-8">
-          <label className="block">
+        <div className="mb-6">
+          <label className="block desc">
             Bio:
             <textarea
               name="bio"
               placeholder="Bio"
               value={formData.bio}
               onChange={handleChange}
-              className="p-2 border rounded w-full"
+              className="form_textarea"
               required
             />
           </label>
         </div>
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
-        >
+        <button type="submit" className="outline_btn px-6 py-2 mt-4">
           Create
         </button>
       </form>
